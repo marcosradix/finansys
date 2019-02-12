@@ -14,7 +14,6 @@ export class CategoryService {
   constructor(private http: HttpClient) { }
 
   getAll(): Observable<Array<CategoryModel>> {
-
     return this.http.get(this.apiPath).pipe(
       catchError(this.handleErro),
       map(this.jsonDataToCategories)
