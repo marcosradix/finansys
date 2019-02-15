@@ -6,14 +6,14 @@
     <li class="breadcrumb-item">
       <a routerLink="/categorias">Categorias</a>
     </li>
-    <li class="breadcrumb-item active">Formulário de Categorias</li>
+    <li class="breadcrumb-item active">{{pageTitle}}</li>
   </ol>
 </nav>
 
 <div class="row mb-4">
   <div class="col-md">
     <h1 class="h2 border-left pl-2">
-      Formulário de Categorias {{currentAction}}
+        {{pageTitle}}
     </h1>
   </div>
   <div class="col-md">
@@ -23,22 +23,28 @@
   </div>
 </div>
 
-<form [formGroup]="categoryForm">
+<form [formGroup]="categoryForm" (submit)="submitFormAction()">
   <div class="card">
     <div class="card-header">
       Informações sobre categorias
-      <button type="submit" class="btn btn-primary btn-lg float-right">Salvar</button>
+      <button type="submit" class="btn btn-primary btn-lg float-right" [disabled]="submittingForm || categoryForm.invalid">Salvar</button>
     </div>
     <div class="card-body">
       <div class="form-row">
         <div class="form-group col-md-4">
           <label for="name">Nome</label>
-          <input type="text" class="form-control" id="name">
+          <input type="text" class="form-control" id="name" formControlName="name">
+
+          <div class="text-danger" *ngIf="categoryForm.get('name').invalid && categoryForm.get('name').touched">
+            <div *ngIf="categoryForm.get('name').errors.required" >Campo obrigatório</div>
+            <div *ngIf="categoryForm.get('name').errors.minlength" >Campo deve ter no mínimo 2 caracteres</div>
+          </div>
+
         </div>
 
         <div class="form-group col-md-8">
           <label for="description">Descrição</label>
-          <input type="text" class="form-control" id="description">
+          <input type="text" class="form-control" id="description" formControlName="description">
         </div>
 
       </div>
