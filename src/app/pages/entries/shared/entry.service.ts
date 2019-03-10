@@ -54,12 +54,12 @@ export class EntryService {
   }
 
   jsonDataToEntry(jsonData: any): EntryModel {
-    return jsonData as EntryModel;
+    return  Object.assign(new EntryModel, jsonData);
   }
 
   private jsonDataToEntries(jsonData: any[]): EntryModel[] {
-    const entries: EntryModel[] = [];
-    jsonData.forEach(element => entries.push(element as EntryModel));
+    const entries: Array<EntryModel> = [];
+    jsonData.forEach(element => entries.push(Object.assign(new EntryModel() , element)));
     return entries;
   }
   private handleErro(erro: any): Observable<any> {
