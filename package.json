@@ -27,6 +27,7 @@
     "currency-formatter": "^1.5.3",
     "jquery": "^3.3.1",
     "moment": "^2.24.0",
+    "ngx-mask": "^7.3.6",
     "primeicons": "^1.0.0",
     "primeng": "^7.0.5",
     "rxjs": "~6.3.3",
@@ -37,7 +38,7 @@
   "devDependencies": {
     "@angular-devkit/build-angular": "^0.12.3",
     "@angular/cli": "~7.1.0",
-    "@angular/compiler-cli": "~7.1.0",
+    "@angular/compiler-cli": "^7.2.8",
     "@angular/language-service": "~7.1.0",
     "@types/jasmine": "~2.8.8",
     "@types/jasminewd2": "~2.0.3",
