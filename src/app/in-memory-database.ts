@@ -26,7 +26,7 @@ export class InMemoryDatabase implements InMemoryDbService {
                 description: "pagamento desse mês"
             } as EntryModel,
             {
-                id: 1,
+                id: 2,
                 name: "Gás de cozinha",
                 description: "pagamento desse mês",
                 type: 0, amount: "150,00",
