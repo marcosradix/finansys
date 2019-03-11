@@ -29,7 +29,7 @@ export class InMemoryDatabase implements InMemoryDbService {
                 id: 2,
                 name: "Gás de cozinha",
                 description: "pagamento desse mês",
-                type: "renevue", amount: "150,00",
+                type: "revenue", amount: "150,00",
                 date: "11/10/2018",
                 paid: true,
                 categoryId: categorias[0].id,

@@ -69,7 +69,7 @@ export class EntryFormComponent implements OnInit, AfterContentChecked {
       monthNamesShort: [ "Jan", "Fev", "Mar", "Abr", "Mai", "Jun","Jul", "Ago", "Set", "Out", "Nov", "Dez" ],
       today: 'Hoje',
       clear: 'Limpar',
-      dateFormat: 'dd/MM/yyyy',
+      dateFormat: 'dd/mm/yyyy',
   };
   this.loadCategories();
   }

@@ -16,7 +16,7 @@ export class EntryModel{
 
     static types ={
         expensive : "DESPESA",
-        renevue: "RECEITA"
+        revenue: "RECEITA"
     }
 
     get paidText(): string{
