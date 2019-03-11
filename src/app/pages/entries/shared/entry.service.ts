@@ -32,7 +32,7 @@ export class EntryService {
   }
 
   createEntry(entry: EntryModel): Observable<EntryModel> {
-    return this.categoryService.getCategoryById(entry.categoryId).pipe(
+    return this.categoryService.getResourceById(entry.categoryId).pipe(
       flatMap(cat => {
         entry.category = cat;
 
@@ -48,7 +48,7 @@ export class EntryService {
 
   updateEntry(entry: EntryModel): Observable<EntryModel> {
     const url = `${this.apiPath}/${entry.id}`;
-   return this.categoryService.getCategoryById(entry.categoryId).pipe(
+   return this.categoryService.getResourceById(entry.categoryId).pipe(
       flatMap(cat => {
         entry.category = cat;
         

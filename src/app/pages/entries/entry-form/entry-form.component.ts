@@ -94,7 +94,7 @@ export class EntryFormComponent implements OnInit, AfterContentChecked {
       id: [null],
       name: [null, [valid.required, valid.minLength(2)]],
       description: [null],
-      type: [0 , [valid.required]],
+      type: ["expensive" , [valid.required]],
       amount: [null , [valid.required]],
       date: [null , [valid.required]],
       paid: [true , [valid.required]],

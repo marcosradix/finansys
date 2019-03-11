@@ -15,8 +15,8 @@ registerLocaleData(ptBr);
 @NgModule({
   declarations: [EntryListComponent, EntryFormComponent],
   imports: [
-    SharedModule,
     EntriesRoutingModule,
+    SharedModule,
     CalendarModule,
     IMaskModule,
   ]
