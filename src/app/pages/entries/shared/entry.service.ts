@@ -1,35 +1,23 @@
+import { flatMap ,map, catchError} from 'rxjs/operators';
+import { BaseResourceService } from 'src/app/shared/services/base-resource.service';
 import { CategoryService } from './../../categories/shared/category.service';
 import { EntryModel } from './model/entry.model';
-import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from "@angular/common/http";
-import { Observable, throwError } from "rxjs";
-import { map, catchError, flatMap } from "rxjs/operators";
+import { Injectable , Injector} from '@angular/core';
+import { Observable } from "rxjs";
+
+
+
 
 @Injectable({
   providedIn: 'root'
 })
-export class EntryService {
+export class EntryService extends BaseResourceService<EntryModel>{
 
-  private apiPath: string = "api/entries"
-
-  constructor(private http: HttpClient,
-    private categoryService: CategoryService) { }
-
-  getAll(): Observable<Array<EntryModel>> {
-    return this.http.get(this.apiPath).pipe(
-      catchError(this.handleErro),
-      map(this.jsonDataToEntries)
-    );
+  constructor(protected injector: Injector,
+              private categoryService: CategoryService) { 
+    super(injector, "api/entries");
   }
 
-
-  getEntryById(id: number): Observable<EntryModel> {
-    const url = `${this.apiPath}/${id}`;
-    return this.http.get(url).pipe(
-      catchError(this.handleErro),
-      map(this.jsonDataToEntry)
-    );
-  }
 
   createEntry(entry: EntryModel): Observable<EntryModel> {
     return this.categoryService.getResourceById(entry.categoryId).pipe(
@@ -38,7 +26,7 @@ export class EntryService {
 
         return this.http.post(this.apiPath, entry).pipe(
           catchError(this.handleErro),
-          map(this.jsonDataToEntry)
+          map(this.jsonDataToResource)
         );
       }
       )
@@ -60,25 +48,16 @@ export class EntryService {
 
   }
 
-  deleteEntry(id: number): Observable<any> {
-    const url = `${this.apiPath}/${id}`;
-    return this.http.delete(url).pipe(
-      catchError(this.handleErro),
-      map(() => null)
-    );
-  }
 
-  jsonDataToEntry(jsonData: any): EntryModel {
+
+  protected  jsonDataToResource(jsonData: any): EntryModel {
     return Object.assign(new EntryModel, jsonData);
   }
 
-  private jsonDataToEntries(jsonData: any[]): EntryModel[] {
+  protected jsonDataToResources(jsonData: any[]): EntryModel[] {
     const entries: Array<EntryModel> = [];
     jsonData.forEach(element => entries.push(Object.assign(new EntryModel(), element)));
     return entries;
   }
-  private handleErro(erro: any): Observable<any> {
-    console.log("Erro na requisição => ", erro);
-    return throwError(erro);
-  }
+
 }
