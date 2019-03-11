@@ -22,15 +22,15 @@ export class InMemoryDatabase implements InMemoryDbService {
                 paid: false,
                 date: "11/11/2019",
                 amount: "10,00",
-                type: 0,
+                type: "expensive",
                 description: "pagamento desse mês"
             } as EntryModel,
             {
                 id: 2,
                 name: "Gás de cozinha",
                 description: "pagamento desse mês",
-                type: 0, amount: "150,00",
-                date: "14/10/2018",
+                type: "renevue", amount: "150,00",
+                date: "11/10/2018",
                 paid: true,
                 categoryId: categorias[0].id,
                 category: categorias[0]

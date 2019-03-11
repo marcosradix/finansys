@@ -5,7 +5,7 @@ export class EntryModel{
         public id?: number,
         public name?: string,
         public description?: string,
-        public type?: TypeEnum,
+        public type?: string,
         public amount?: string,
         public date?: string,
         public paid?: boolean,

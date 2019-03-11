@@ -40,7 +40,7 @@
         {{entry.category.name}}
       </td>
       <td class="text-right">
-        <strong [class.text-success]="entry.type == 1" [class.text-danger]="entry.type == 0">
+        <strong [class.text-success]="entry.type == 'renevue'" [class.text-danger]="entry.type == 'expensive'">
           {{entry.amount}}
         </strong>
         <br>
