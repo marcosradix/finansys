@@ -26,4 +26,8 @@ export class EntryModel extends BaseResourceModel{
         return this.paid ? 'Pago' :'Pendente';
         
     }
+
+    static fromJson(jsonData: any):EntryModel{
+        return Object.assign(new EntryModel(), jsonData);
+    }
 }

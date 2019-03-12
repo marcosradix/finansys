@@ -24,10 +24,7 @@ export class EntryService extends BaseResourceService<EntryModel>{
       flatMap(cat => {
         entry.category = cat;
 
-        return this.http.post(this.apiPath, entry).pipe(
-          catchError(this.handleErro),
-          map(this.jsonDataToResource)
-        );
+        return super.createResource(entry);
       }
       )
     );
@@ -35,14 +32,11 @@ export class EntryService extends BaseResourceService<EntryModel>{
   }
 
   updateEntry(entry: EntryModel): Observable<EntryModel> {
-    const url = `${this.apiPath}/${entry.id}`;
    return this.categoryService.getResourceById(entry.categoryId).pipe(
       flatMap(cat => {
         entry.category = cat;
         
-        return this.http.put(url, entry).pipe(
-          catchError(this.handleErro),
-          map(() => entry));
+        return super.updateResource(entry);
       })
     );
 
@@ -51,12 +45,12 @@ export class EntryService extends BaseResourceService<EntryModel>{
 
 
   protected  jsonDataToResource(jsonData: any): EntryModel {
-    return Object.assign(new EntryModel, jsonData);
+    return EntryModel.fromJson(jsonData);
   }
 
   protected jsonDataToResources(jsonData: any[]): EntryModel[] {
     const entries: Array<EntryModel> = [];
-    jsonData.forEach(element => entries.push(Object.assign(new EntryModel(), element)));
+    jsonData.forEach(element => entries.push(EntryModel.fromJson(element)));
     return entries;
   }
 
