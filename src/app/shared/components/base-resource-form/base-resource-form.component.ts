@@ -43,7 +43,7 @@ export abstract class BaseResourceFormComponent<T extends BaseResourceModel> imp
       this.pageTitle = this.editionPageTitle();
     }
   }
-    editionPageTitle(): string {
+  protected editionPageTitle(): string {
         return "edição ";
     }
     protected creationPageTitle(): string {
@@ -117,7 +117,7 @@ export abstract class BaseResourceFormComponent<T extends BaseResourceModel> imp
   }
   actionsForSuccess(resource: T): void {
     toastr.success("Solicitação processada com sucesso!");
-    const baseComponentPath: string = this.route.snapshot.url[0].path;
+    const baseComponentPath: string = this.route.parent.snapshot.url[0].path;
     this.router.navigateByUrl(baseComponentPath, {skipLocationChange: true}).then(
       () => this.router.navigate([baseComponentPath, resource.id, "edit"])
     );
