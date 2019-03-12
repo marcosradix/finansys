@@ -5,16 +5,21 @@ import { map, catchError } from "rxjs/operators";
 import { Injector } from '@angular/core';
 
 export abstract class BaseResourceService<T extends BaseResourceModel>{
-
+    // recebe um json e retorna a entidade  protected jsonDataToResourceFn: (jsonData) => T
     protected http: HttpClient;
-    constructor(protected injector: Injector, protected apiPath: string) { 
+    constructor(
+        protected injector: Injector,
+        protected apiPath: string,
+        protected jsonDataToResourceFn: (jsonData : any) => T
+        ) { 
         this.http = injector.get(HttpClient);
     }
 
     getAll(): Observable<Array<T>> {
         return this.http.get(this.apiPath).pipe(
-            catchError(this.handleErro),
-            map(this.jsonDataToResources)
+            map(this.jsonDataToResources.bind(this)),
+            catchError(this.handleErro)
+           
         );
     }
 
@@ -22,42 +27,42 @@ export abstract class BaseResourceService<T extends BaseResourceModel>{
     getResourceById(id: number): Observable<T> {
         const url = `${this.apiPath}/${id}`;
         return this.http.get(url).pipe(
-            catchError(this.handleErro),
-            map(this.jsonDataToResource)
+            map(this.jsonDataToResource.bind(this)),
+            catchError(this.handleErro)
         );
     }
 
     createResource(resource: T): Observable<T> {
         return this.http.post(this.apiPath, resource).pipe(
-            catchError(this.handleErro),
-            map(this.jsonDataToResource)
+            map(this.jsonDataToResource.bind(this)),
+            catchError(this.handleErro)
         );
     }
 
     updateResource(resource: T): Observable<T> {
         const url = `${this.apiPath}/${resource.id}`;
         return this.http.put(url, resource).pipe(
-            catchError(this.handleErro),
-            map(() => resource)
+            map(() => resource),
+            catchError(this.handleErro)
         );
     }
 
     deleteResource(id: number): Observable<any> {
         const url = `${this.apiPath}/${id}`;
         return this.http.delete(url).pipe(
-            catchError(this.handleErro),
-            map(() => null)
+            map(() => null),
+            catchError(this.handleErro)
         );
     }
 
     
   protected jsonDataToResource(jsonData: any): T {
-    return jsonData as T;
+    return this.jsonDataToResourceFn(jsonData);
   }
 
   protected jsonDataToResources(jsonData: any[]): T[] {
     const resources: T[] = [];
-    jsonData.forEach(element => resources.push(element as T));
+    jsonData.forEach(element => resources.push(  this.jsonDataToResourceFn(element) ));
     return resources;
   }
   protected handleErro(erro: any): Observable<any> {

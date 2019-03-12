@@ -7,15 +7,17 @@ import { Observable } from "rxjs";
 
 
 
-
+const urlApi : string = "api/entries";
 @Injectable({
   providedIn: 'root'
 })
 export class EntryService extends BaseResourceService<EntryModel>{
 
-  constructor(protected injector: Injector,
-              private categoryService: CategoryService) { 
-    super(injector, "api/entries");
+  constructor(
+    protected injector: Injector,
+    private categoryService: CategoryService
+    ) { 
+    super(injector, urlApi, EntryModel.fromJson);
   }
 
 
@@ -40,18 +42,6 @@ export class EntryService extends BaseResourceService<EntryModel>{
       })
     );
 
-  }
-
-
-
-  protected  jsonDataToResource(jsonData: any): EntryModel {
-    return EntryModel.fromJson(jsonData);
-  }
-
-  protected jsonDataToResources(jsonData: any[]): EntryModel[] {
-    const entries: Array<EntryModel> = [];
-    jsonData.forEach(element => entries.push(EntryModel.fromJson(element)));
-    return entries;
   }
 
 }
