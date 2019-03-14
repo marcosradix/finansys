@@ -1,8 +1,6 @@
 import { CategoryModel } from './../shared/category.model';
 import { Component, Injector } from '@angular/core';
 import { Validators as valid } from "@angular/forms";
-
-import { CategoryModel as Category } from "../shared/category.model";
 import { CategoryService } from './../shared/category.service';
 import { BaseResourceFormComponent } from 'src/app/shared/components/base-resource-form/base-resource-form.component';
 
