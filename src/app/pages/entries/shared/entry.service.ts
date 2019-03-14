@@ -7,7 +7,7 @@ import { Observable } from "rxjs";
 
 
 
-const urlApi: string = "api/entries";
+const urlApi: string = "api/ntries";
 @Injectable({
   providedIn: 'root'
 })
