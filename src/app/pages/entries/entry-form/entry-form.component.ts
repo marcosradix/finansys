@@ -3,11 +3,11 @@ import { CategoryService } from './../../categories/shared/category.service';
 import { EntryModel } from './../shared/model/entry.model';
 import { Component, Injector, OnInit } from '@angular/core';
 import { Validators as valid } from "@angular/forms";
-import { EntryService } from './../shared/Entry.service';
 import { CategoryModel } from '../../categories/shared/category.model';
+import { EntryService } from '../shared/entry.service';
 
 @Component({
-  selector: 'app-Entry-form',
+  selector: 'app-entry-form',
   templateUrl: './entry-form.component.html',
   styleUrls: ['./entry-form.component.css']
 })
