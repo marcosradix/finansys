@@ -21,10 +21,10 @@ export class EntryService extends BaseResourceService<EntryModel>{
   }
 
 
-  createEntry(entry: EntryModel): Observable<EntryModel> {
+  createResource(entry: EntryModel): Observable<EntryModel> {
     return this.setCategoryAndSendToServer(entry, super.createResource.bind(this));
   }
-  updateEntry(entry: EntryModel): Observable<EntryModel> {
+  updateResource(entry: EntryModel): Observable<EntryModel> {
     return this.setCategoryAndSendToServer(entry, super.updateResource.bind(this));
   }
 

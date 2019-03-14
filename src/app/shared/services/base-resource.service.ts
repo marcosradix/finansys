@@ -15,7 +15,7 @@ export abstract class BaseResourceService<T extends BaseResourceModel>{
         this.http = injector.get(HttpClient);
     }
 
-    getAll(): Observable<Array<T>> {
+     getAll(): Observable<Array<T>> {
         return this.http.get(this.apiPath).pipe(
             map(this.jsonDataToResources.bind(this)),
             catchError(this.handleErro)
@@ -24,7 +24,7 @@ export abstract class BaseResourceService<T extends BaseResourceModel>{
     }
 
 
-    getResourceById(id: number): Observable<T> {
+     getResourceById(id: number): Observable<T> {
         const url = `${this.apiPath}/${id}`;
         return this.http.get(url).pipe(
             map(this.jsonDataToResource.bind(this)),
@@ -32,14 +32,14 @@ export abstract class BaseResourceService<T extends BaseResourceModel>{
         );
     }
 
-    createResource(resource: T): Observable<T> {
+     createResource(resource: T): Observable<T> {
         return this.http.post(this.apiPath, resource).pipe(
             map(this.jsonDataToResource.bind(this)),
             catchError(this.handleErro)
         );
     }
 
-    updateResource(resource: T): Observable<T> {
+     updateResource(resource: T): Observable<T> {
         const url = `${this.apiPath}/${resource.id}`;
         return this.http.put(url, resource).pipe(
             map(() => resource),
@@ -47,7 +47,7 @@ export abstract class BaseResourceService<T extends BaseResourceModel>{
         );
     }
 
-    deleteResource(id: number): Observable<any> {
+     deleteResource(id: number): Observable<any> {
         const url = `${this.apiPath}/${id}`;
         return this.http.delete(url).pipe(
             map(() => null),
