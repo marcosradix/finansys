@@ -1,4 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { EntryService } from './../../entries/shared/entry.service';
+import { EntryModel } from './../../entries/shared/model/entry.model';
+import { CategoryService } from './../../categories/shared/category.service';
+import { CategoryModel } from './../../categories/shared/category.model';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import currencyFormatter from 'currency-formatter';
 
 @Component({
   selector: 'app-reports',
@@ -7,7 +12,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ReportsComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private categoryService: CategoryService,
+    private entryService: EntryService
+    ) { }
 
   ngOnInit() {
   }
