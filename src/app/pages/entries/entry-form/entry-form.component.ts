@@ -43,8 +43,7 @@ export class EntryFormComponent extends BaseResourceFormComponent<EntryModel> im
       monthNames: ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"],
       monthNamesShort: ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"],
       today: 'Hoje',
-      clear: 'Limpar',
-      dateFormat: 'dd/mm/yyyy',
+      clear: 'Limpar'
     };
 
   }

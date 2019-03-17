@@ -4,7 +4,7 @@ import { CategoryService } from './../../categories/shared/category.service';
 import { EntryModel } from './model/entry.model';
 import { Injectable, Injector } from '@angular/core';
 import { Observable } from "rxjs";
-
+import * as moment from "moment";
 
 
 const urlApi: string = "api/entries";
@@ -12,6 +12,23 @@ const urlApi: string = "api/entries";
   providedIn: 'root'
 })
 export class EntryService extends BaseResourceService<EntryModel>{
+  getByMonthAndYear(month: number, year: number): Observable<Array<EntryModel>> {
+    return this.getAll().pipe(
+      map(entries => this.filterByMonthAndYear(entries, month, year))
+    )
+  }
+
+  private filterByMonthAndYear(entries: Array<EntryModel>, month: number, year: number) {
+    return entries.filter(entry =>{
+      const  entryDate = moment(entry.date, "DD/MM/YYYY");
+      const monthMaches = entryDate.month() + 1 == month;
+      const yearMaches = entryDate.year() == year;
+      if(monthMaches && yearMaches){
+        return entry;
+      }
+    });
+  }
+
 
   constructor(
     protected injector: Injector,

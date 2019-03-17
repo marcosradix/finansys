@@ -64,7 +64,7 @@
       </div>
       <div class="card-body">
         <div class="card-title">
-          R$ 1500
+           {{revenueTotal}}
         </div>
       </div>
     </div>
@@ -75,7 +75,7 @@
         </div>
         <div class="card-body">
           <div class="card-title">
-            R$ 1500
+            {{expensiveTotal}}
           </div>
         </div>
       </div>
@@ -86,7 +86,7 @@
           </div>
           <div class="card-body">
             <div class="card-title">
-              R$ 2500
+               {{balance}}
             </div>
           </div>
         </div>
@@ -95,11 +95,11 @@
 <hr>
 <div class="row mt-5 mb-4">
   <div class="col-md-6">
-    GRÁFICO DE RECEITAS
+   <p-chart type="bar" [data]="revenueChartdata" [options]="chartOptions"></p-chart>
   </div>
 
   <div class="col-md-6">
-      GRÁFICO DE DESPESAS
+      <p-chart type="bar" [data]="expensiveChartData" [options]="chartOptions"></p-chart>
     </div>
 
 </div>
