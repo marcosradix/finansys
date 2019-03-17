@@ -72,7 +72,7 @@ export class ReportsComponent implements OnInit {
   }
   private setChartData() {
     this.revenueChartdata = this.getChartData("revenue", "GRÁFICO DE RECEITAS", "#9ccc65");
-    this.revenueChartdata = this.getChartData("expensive", "GRÁFICO DE DESPESAS", "#e03131");
+    this.expensiveChartData = this.getChartData("expensive", "GRÁFICO DE DESPESAS", "#e03131");
 
 
   }
