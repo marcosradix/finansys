@@ -80,9 +80,8 @@ export class ReportsComponent implements OnInit {
   private getChartData(entryType: string, title: string, color: string ){
     const chartData = []; 
     this.categories.forEach(category => {
-      const filteredEntries = this.entries.filter(entry => {
-        (entry.categoryId == category.id) && (entry.type == entryType)
-      });
+      const filteredEntries = this.entries.filter(
+        entry => (entry.categoryId == category.id) && (entry.type == entryType));
       if (filteredEntries.length > 0) {
         const totalAmount = filteredEntries.reduce(
           (total, entry) => total + currencyFormatter.unformat(entry.amount, { code: 'BRL' }), 0
